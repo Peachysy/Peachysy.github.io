@@ -9,8 +9,13 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #FF4500, #FFA500); /* Different shades of orange */
+            background: #FFA500
             overflow: hidden;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
 
         #content {
@@ -19,6 +24,16 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+            animation: fadeIn 2s ease forwards; /* Fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         h1 {
@@ -26,6 +41,18 @@
             font-size: 5em;
             color: white;
             margin: 0;
+            animation: slideInDown 2s ease forwards; /* Slide-in animation */
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         #tagline {
@@ -37,6 +64,18 @@
             background-clip: text;
             margin: 0;
             display: inline-block;
+            animation: slideInUp 2s ease forwards; /* Slide-in animation */
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         p {
@@ -45,6 +84,7 @@
             color: white;
             max-width: 600px;
             margin: 20px auto;
+            animation: fadeIn 2s ease forwards; /* Fade-in animation */
         }
 
         .stars {
