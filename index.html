@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> <!-- Inter font -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #FF4500, #FFA500); /* Different shades of orange */
+            overflow: hidden;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            animation: fadeIn 2s ease forwards; /* Fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif; /* Use Inter font */
+            font-size: 5em;
+            color: white;
+            margin: 0;
+            animation: slideInDown 2s ease forwards; /* Slide-in animation */
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #tagline {
+            font-family: 'Inter', sans-serif; /* Use Inter font */
+            font-size: 2em;
+            color: white;
+            background-image: linear-gradient(to right, #FFA500, #FFD700); /* Orange gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin: 0;
+            display: inline-block;
+            animation: slideInUp 2s ease forwards; /* Slide-in animation */
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        p {
+            font-family: 'Inter', sans-serif; /* Use Inter font */
+            font-size: 1.2em;
+            color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            animation: fadeIn 2s ease forwards; /* Fade-in animation */
+        }
+
+        .stars {
+            color: #55FFFF; /* Color for the stars */
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            vertical-align: middle;
+            cursor: pointer; /* Change cursor to pointer */
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Hi,</h1>
+        <div id="tagline">I'm Peachy</div>
+        <p>I am currently at <span class="stars">[✫356]</span> stars :)</p>
+        <p><img src="https://icons.iconarchive.com/icons/fa-team/fontawesome-brands/128/FontAwesome-Brands-Discord-icon.png" alt="Discord Icon" class="logo" onclick="copyToClipboard('peachyysss')"> peachyysss</p>
+        <p><a href="https://nmc.is/unelect"><img src="https://s.namemc.com/img/favicon-128.png" alt="NameMC Icon" class="logo"></a> Unelect</p>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            var dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            alert("Discord copied to clipboard: " + text);
+        }
+    </script>
+</body>
+</html>
