@@ -9,22 +9,19 @@
         body {
             margin: 0;
             padding: 0;
-            background: #FFA500
+            background: linear-gradient(to right, #FFA500, #FFD700); /* Orange to yellow gradient */
+            height: 100vh; /* Ensure the gradient covers the entire viewport height */
             overflow: hidden;
-        }
-
-        @keyframes backgroundAnimation {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
             animation: fadeIn 2s ease forwards; /* Fade-in animation */
+            color: white; /* Ensure text is white for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow to text for better readability */
         }
 
         @keyframes fadeIn {
@@ -39,7 +36,6 @@
         h1 {
             font-family: 'Inter', sans-serif; /* Use Inter font */
             font-size: 5em;
-            color: white;
             margin: 0;
             animation: slideInDown 2s ease forwards; /* Slide-in animation */
         }
@@ -58,10 +54,6 @@
         #tagline {
             font-family: 'Inter', sans-serif; /* Use Inter font */
             font-size: 2em;
-            color: white;
-            background-image: linear-gradient(to right, #FFA500, #FFD700); /* Orange gradient */
-            -webkit-background-clip: text;
-            background-clip: text;
             margin: 0;
             display: inline-block;
             animation: slideInUp 2s ease forwards; /* Slide-in animation */
@@ -81,7 +73,6 @@
         p {
             font-family: 'Inter', sans-serif; /* Use Inter font */
             font-size: 1.2em;
-            color: white;
             max-width: 600px;
             margin: 20px auto;
             animation: fadeIn 2s ease forwards; /* Fade-in animation */
@@ -122,3 +113,5 @@
     </script>
 </body>
 </html>
+message.txt
+4 KB
