@@ -58,10 +58,6 @@
             margin: 0;
             display: inline-block;
             animation: slideInUp 2s ease forwards; /* Slide-in animation */
-            font-weight: bold;
-            background: linear-gradient(to right, #FF7F50, #FF4500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         @keyframes slideInUp {
@@ -93,7 +89,7 @@
             margin: 0 10px;
             vertical-align: middle;
             cursor: pointer; /* Change cursor to pointer */
-            animation: bounce 2s infinite; /* Bounce animation */
+            animation: bounce 2s ease forwards; /* Bounce animation that occurs only once */
         }
 
         @keyframes bounce {
