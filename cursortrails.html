@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Trails</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> 
+    <link rel="icon" href="https://static-00.iconduck.com/assets.00/peach-emoji-2048x2027-pdtfbgoz.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #FFA500, #FFD700); 
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .emoji-selector {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .emoji-selector select {
+            font-size: 20px;
+        }
+
+        .trail {
+            position: absolute;
+            pointer-events: none;
+            font-size: 24px;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-selector">
+        <label for="emoji">Select an emoji: </label>
+        <select id="emoji">
+            <option value="😀">😀</option>
+            <option value="😎">😎</option>
+            <option value="🍕">🍕</option>
+            <option value="🌟">🌟</option>
+            <option value="🎉">🎉</option>
+        </select>
+    </div>
+
+    <script>
+        let emoji = "😀";
+
+        document.getElementById('emoji').addEventListener('change', function() {
+            emoji = this.value;
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.classList.add('trail');
+            trail.innerHTML = emoji;
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                setTimeout(() => {
+                    trail.remove();
+                }, 500);
+            }, 50);
+        });
+    </script>
+</body>
+</html>
