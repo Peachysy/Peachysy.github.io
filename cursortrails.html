@@ -29,8 +29,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .emoji-selector select {
+        .emoji-selector select,
+        .emoji-selector input {
             font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .emoji-selector label {
+            font-size: 16px;
+            margin-right: 5px;
         }
 
         .trail {
@@ -45,43 +52,53 @@
 <body>
     <div class="emoji-selector">
         <label for="emoji">Select an emoji: </label>
-        <select id="emoji">
-            <option value="😀">😀</option>
-            <option value="😎">😎</option>
-            <option value="🍕">🍕</option>
-            <option value="🌟">🌟</option>
-            <option value="🎉">🎉</option>
-            <option value="🍑">🍑</option> <!-- Adding peach emoji -->
-        </select>
-        <label for="fade-speed">Fade Speed:</label>
-        <select id="fade-speed">
-            <option value="0.5">Slow</option>
-            <option value="0.3">Medium</option>
-            <option value="0.1">Fast</option>
-        </select>
-        <label for="spawn-speed">Spawn Speed:</label>
-        <select id="spawn-speed">
-            <option value="50">Slow</option>
-            <option value="30">Medium</option>
-            <option value="10">Fast</option>
-        </select>
+        <select id="emoji"></select>
+        <input type="text" id="search" placeholder="Search emojis">
+        <button id="search-button">Search</button>
+        <label for="fade-speed">Fade Speed (1-100):</label>
+        <input type="number" id="fade-speed" min="1" max="100" value="50">
+        <label for="spawn-speed">Spawn Speed (1-100):</label>
+        <input type="number" id="spawn-speed" min="1" max="100" value="50">
     </div>
 
     <script>
         let emoji = "😀";
-        let fadeSpeed = 0.5;
+        let fadeSpeed = 50;
         let spawnSpeed = 50;
 
-        document.getElementById('emoji').addEventListener('change', function() {
+        const emojiSelect = document.getElementById('emoji');
+        const searchInput = document.getElementById('search');
+        const searchButton = document.getElementById('search-button');
+        const fadeSpeedInput = document.getElementById('fade-speed');
+        const spawnSpeedInput = document.getElementById('spawn-speed');
+
+        function fetchEmojis(query = "") {
+            fetch(`https://emoji-api.com/emojis?search=${query}&access_key=85f819895bc5d0b48c029a00bb6eaeeed18ed067`)
+                .then(response => response.json())
+                .then(data => {
+                    emojiSelect.innerHTML = data.map(emoji => `<option value="${emoji.character}">${emoji.character}</option>`).join('');
+                })
+                .catch(error => console.error('Error fetching emojis:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchEmojis(); // Fetch all emojis on load
+        });
+
+        emojiSelect.addEventListener('change', function() {
             emoji = this.value;
         });
 
-        document.getElementById('fade-speed').addEventListener('change', function() {
-            fadeSpeed = parseFloat(this.value);
+        fadeSpeedInput.addEventListener('input', function() {
+            fadeSpeed = parseInt(this.value);
         });
 
-        document.getElementById('spawn-speed').addEventListener('change', function() {
+        spawnSpeedInput.addEventListener('input', function() {
             spawnSpeed = parseInt(this.value);
+        });
+
+        searchButton.addEventListener('click', function() {
+            fetchEmojis(searchInput.value);
         });
 
         document.addEventListener('mousemove', function(e) {
@@ -90,13 +107,14 @@
             trail.innerHTML = emoji;
             trail.style.left = e.pageX + 'px';
             trail.style.top = e.pageY + 'px';
+            trail.style.transition = `opacity ${fadeSpeed / 100}s`;
             document.body.appendChild(trail);
 
             setTimeout(() => {
                 trail.style.opacity = '0';
                 setTimeout(() => {
                     trail.remove();
-                }, fadeSpeed * 1000);
+                }, fadeSpeed * 10);
             }, spawnSpeed);
         });
     </script>
